@@ -18,42 +18,42 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     final String servername = "http://shafiqurrahman.com/anik.php";
-    String temp,temp2,temp3;
+    String temp, temp2, temp3;
     RequestQueue requestQueue;
     TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        requestQueue= Volley.newRequestQueue(MainActivity.this);
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
         textView = (TextView) findViewById(R.id.textView);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(servername, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                 for (int i = 0 ; i <= response.length();i++)
-                 {
-                     temp = null;
-                     try {
-                         JSONObject object = (JSONObject) response.get(i);
-                         temp = object.getString("id");
-                         temp2 = object.getString("name");
-                         temp3 = object.getString("age");
-                         textView.append(temp);
-                         textView.append("\n");
-                         textView.append(temp2);
-                         textView.append("\n");
-                         textView.append(temp3);
-                         textView.append("\n\n");
-                     } catch (JSONException e) {
-                         e.printStackTrace();
-                         Log.e("error",e.toString());
-                     }
-                 }
+                for (int i = 0; i <= response.length(); i++) {
+                    temp = null;
+                    try {
+                        JSONObject object = (JSONObject) response.get(i);
+                        temp = object.getString("id");
+                        temp2 = object.getString("name");
+                        temp3 = object.getString("age");
+                        textView.append(temp);
+                        textView.append("\n");
+                        textView.append(temp2);
+                        textView.append("\n");
+                        textView.append(temp3);
+                        textView.append("\n\n");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e("error", e.toString());
+                    }
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
+                Log.e("error", volleyError.toString());
             }
         });
         requestQueue.add(jsonArrayRequest);
