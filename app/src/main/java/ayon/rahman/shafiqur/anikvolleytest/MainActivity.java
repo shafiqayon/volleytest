@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String servername = "http://shafiqurrahman.com/anik.php";
+    final String servername = "http://shafiqurrahman.com/anik.php"; //your url here
     String temp, temp2, temp3;
     RequestQueue requestQueue;
     TextView textView;
